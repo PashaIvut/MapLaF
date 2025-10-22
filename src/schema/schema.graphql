@@ -32,13 +32,65 @@ type Query {
 }
 
 type Mutation {
-    createUser(username: String!, password: String!): User!
-    createLostItem(description: String!, coordinates: [Float!]!, address: String!, authorId: ID!): LostItem!
-    createFoundItem(description: String!, coordinates: [Float!]!, address: String!, authorId: ID!): FoundItem!
-    updateLostItem(id: ID!, description: String!, coordinates: [Float!]!, address: String!): LostItem!
-    updateFoundItem(id: ID!, description: String!, coordinates: [Float!]!, address: String!): FoundItem!
-    deleteLostItem(id: ID!): Boolean!
-    deleteFoundItem(id: ID!): Boolean!
+    createUser(username: String!, password: String!): UserResult!
+    createLostItem(description: String!, coordinates: [Float!]!, address: String!, authorId: ID!): ItemResult!
+    createFoundItem(description: String!, coordinates: [Float!]!, address: String!, authorId: ID!): ItemResult!
+    updateLostItem(id: ID!, description: String!, coordinates: [Float!]!, address: String!): ItemResult!
+    updateFoundItem(id: ID!, description: String!, coordinates: [Float!]!, address: String!): ItemResult!
+    deleteLostItem(id: ID!): DeleteResult!
+    deleteFoundItem(id: ID!): DeleteResult!
+}
+
+# ===== UNION TYPES =====
+union UserResult = UserSuccess | UserError
+union ItemResult = ItemSuccess | ItemError
+union DeleteResult = DeleteSuccess | DeleteError
+union Item = LostItem | FoundItem
+
+# ===== SUCCESS TYPES =====
+type UserSuccess {
+  user: User!
+}
+
+type ItemSuccess {
+  item: Item!
+}
+
+type DeleteSuccess {
+  success: Boolean!
+}
+
+# ===== ERROR TYPES =====
+type UserError {
+  error: UserErrorType!
+}
+
+type ItemError {
+  error: ItemErrorType!
+}
+
+type DeleteError {
+  error: DeleteErrorType!
+}
+
+# ===== ERROR ENUMS =====
+enum UserErrorType {
+  INVALID_ID
+  NOT_FOUND
+  VALIDATION_ERROR
+  DUPLICATE_NAME
+}
+
+enum ItemErrorType {
+  INVALID_ID
+  NOT_FOUND
+  VALIDATION_ERROR
+  DUPLICATE_DESCRIPTION
+}
+
+enum DeleteErrorType {
+  INVALID_ID
+  NOT_FOUND
 }
 
 
