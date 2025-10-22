@@ -13,26 +13,14 @@ import    { deleteFoundItem as Mutation_deleteFoundItem } from './resolvers/Muta
 import    { deleteLostItem as Mutation_deleteLostItem } from './resolvers/Mutation/deleteLostItem';
 import    { updateFoundItem as Mutation_updateFoundItem } from './resolvers/Mutation/updateFoundItem';
 import    { updateLostItem as Mutation_updateLostItem } from './resolvers/Mutation/updateLostItem';
-import    { DeleteError } from './resolvers/DeleteError';
-import    { DeleteSuccess } from './resolvers/DeleteSuccess';
 import    { FoundItem } from './resolvers/FoundItem';
-import    { ItemError } from './resolvers/ItemError';
-import    { ItemSuccess } from './resolvers/ItemSuccess';
 import    { LostItem } from './resolvers/LostItem';
 import    { User } from './resolvers/User';
-import    { UserError } from './resolvers/UserError';
-import    { UserSuccess } from './resolvers/UserSuccess';
     export const resolvers: Resolvers = {
       Query: { foundItem: Query_foundItem,foundItems: Query_foundItems,lostItem: Query_lostItem,lostItems: Query_lostItems,user: Query_user,users: Query_users },
       Mutation: { createFoundItem: Mutation_createFoundItem,createLostItem: Mutation_createLostItem,createUser: Mutation_createUser,deleteFoundItem: Mutation_deleteFoundItem,deleteLostItem: Mutation_deleteLostItem,updateFoundItem: Mutation_updateFoundItem,updateLostItem: Mutation_updateLostItem },
       
-      DeleteError: DeleteError,
-DeleteSuccess: DeleteSuccess,
 FoundItem: FoundItem,
-ItemError: ItemError,
-ItemSuccess: ItemSuccess,
 LostItem: LostItem,
 User: User,
-UserError: UserError,
-UserSuccess: UserSuccess
     }
