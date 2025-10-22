@@ -4,10 +4,15 @@ type User {
     createdAt: String!
 }
 
+type Coordinates {
+  lat: Float!
+  lng: Float!
+}
+
 type LostItem {
     id: ID!
     description: String!
-    coordinates: [Float!]!
+    coordinates: Coordinates!
     address: String!
     author: User!
     createdAt: String!
@@ -16,7 +21,7 @@ type LostItem {
 type FoundItem {
     id: ID!
     description: String!
-    coordinates: [Float!]!
+    coordinates: Coordinates!
     address: String!
     author: User!
     createdAt: String!

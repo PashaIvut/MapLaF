@@ -16,6 +16,7 @@ import    { updateLostItem as Mutation_updateLostItem } from './resolvers/Mutati
 import    { FoundItem } from './resolvers/FoundItem';
 import    { LostItem } from './resolvers/LostItem';
 import    { User } from './resolvers/User';
+
     export const resolvers: Resolvers = {
       Query: { foundItem: Query_foundItem,foundItems: Query_foundItems,lostItem: Query_lostItem,lostItems: Query_lostItems,user: Query_user,users: Query_users },
       Mutation: { createFoundItem: Mutation_createFoundItem,createLostItem: Mutation_createLostItem,createUser: Mutation_createUser,deleteFoundItem: Mutation_deleteFoundItem,deleteLostItem: Mutation_deleteLostItem,updateFoundItem: Mutation_updateFoundItem,updateLostItem: Mutation_updateLostItem },

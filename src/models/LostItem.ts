@@ -5,7 +5,7 @@ interface ILostItem extends Document {
     coordinates: { lat: number; lng: number };
     address: string;
     author: mongoose.Types.ObjectId;
-    date: Date;
+    createdAt: Date;
 }
 
 const LostItemSchema = new Schema<ILostItem>({
@@ -23,7 +23,7 @@ const LostItemSchema = new Schema<ILostItem>({
         ref: 'User', 
         required: true
     },
-    date: {
+    createdAt: {
         type: Date, 
         
         default: Date.now}

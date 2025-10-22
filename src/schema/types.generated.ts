@@ -1,4 +1,5 @@
 import { GraphQLResolveInfo } from 'graphql';
+import { FoundItemMapper, LostItemMapper, UserMapper } from './schema.mappers';
 export type Maybe<T> = T | null | undefined;
 export type InputMaybe<T> = T | null | undefined;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -259,8 +260,8 @@ export type ResolversUnionTypes<_RefType extends Record<string, unknown>> = {
     | ( DeleteSuccess & { __typename: 'DeleteSuccess' } )
   ;
   Item:
-    | ( FoundItem & { __typename: 'FoundItem' } )
-    | ( LostItem & { __typename: 'LostItem' } )
+    | ( FoundItemMapper & { __typename: 'FoundItem' } )
+    | ( LostItemMapper & { __typename: 'LostItem' } )
   ;
   ItemResult:
     | ( Omit<ItemError, 'error'> & { error: _RefType['ItemErrorType'] } & { __typename: 'ItemError' } )
@@ -268,7 +269,7 @@ export type ResolversUnionTypes<_RefType extends Record<string, unknown>> = {
   ;
   UserResult:
     | ( Omit<UserError, 'error'> & { error: _RefType['UserErrorType'] } & { __typename: 'UserError' } )
-    | ( UserSuccess & { __typename: 'UserSuccess' } )
+    | ( Omit<UserSuccess, 'user'> & { user: _RefType['User'] } & { __typename: 'UserSuccess' } )
   ;
 };
 
@@ -280,7 +281,7 @@ export type ResolversTypes = {
   DeleteResult: ResolverTypeWrapper<ResolversUnionTypes<ResolversTypes>['DeleteResult']>;
   DeleteSuccess: ResolverTypeWrapper<DeleteSuccess>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
-  FoundItem: ResolverTypeWrapper<FoundItem>;
+  FoundItem: ResolverTypeWrapper<FoundItemMapper>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
   Float: ResolverTypeWrapper<Scalars['Float']['output']>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
@@ -289,14 +290,14 @@ export type ResolversTypes = {
   ItemErrorType: ResolverTypeWrapper<'INVALID_ID' | 'NOT_FOUND' | 'VALIDATION_ERROR' | 'DUPLICATE_DESCRIPTION'>;
   ItemResult: ResolverTypeWrapper<ResolversUnionTypes<ResolversTypes>['ItemResult']>;
   ItemSuccess: ResolverTypeWrapper<Omit<ItemSuccess, 'item'> & { item: ResolversTypes['Item'] }>;
-  LostItem: ResolverTypeWrapper<LostItem>;
+  LostItem: ResolverTypeWrapper<LostItemMapper>;
   Mutation: ResolverTypeWrapper<Record<PropertyKey, never>>;
   Query: ResolverTypeWrapper<Record<PropertyKey, never>>;
-  User: ResolverTypeWrapper<User>;
+  User: ResolverTypeWrapper<UserMapper>;
   UserError: ResolverTypeWrapper<Omit<UserError, 'error'> & { error: ResolversTypes['UserErrorType'] }>;
   UserErrorType: ResolverTypeWrapper<'INVALID_ID' | 'NOT_FOUND' | 'VALIDATION_ERROR' | 'DUPLICATE_NAME'>;
   UserResult: ResolverTypeWrapper<ResolversUnionTypes<ResolversTypes>['UserResult']>;
-  UserSuccess: ResolverTypeWrapper<UserSuccess>;
+  UserSuccess: ResolverTypeWrapper<Omit<UserSuccess, 'user'> & { user: ResolversTypes['User'] }>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -305,7 +306,7 @@ export type ResolversParentTypes = {
   DeleteResult: ResolversUnionTypes<ResolversParentTypes>['DeleteResult'];
   DeleteSuccess: DeleteSuccess;
   Boolean: Scalars['Boolean']['output'];
-  FoundItem: FoundItem;
+  FoundItem: FoundItemMapper;
   String: Scalars['String']['output'];
   Float: Scalars['Float']['output'];
   ID: Scalars['ID']['output'];
@@ -313,13 +314,13 @@ export type ResolversParentTypes = {
   ItemError: ItemError;
   ItemResult: ResolversUnionTypes<ResolversParentTypes>['ItemResult'];
   ItemSuccess: Omit<ItemSuccess, 'item'> & { item: ResolversParentTypes['Item'] };
-  LostItem: LostItem;
+  LostItem: LostItemMapper;
   Mutation: Record<PropertyKey, never>;
   Query: Record<PropertyKey, never>;
-  User: User;
+  User: UserMapper;
   UserError: UserError;
   UserResult: ResolversUnionTypes<ResolversParentTypes>['UserResult'];
-  UserSuccess: UserSuccess;
+  UserSuccess: Omit<UserSuccess, 'user'> & { user: ResolversParentTypes['User'] };
 };
 
 export type DeleteErrorResolvers<ContextType = any, ParentType extends ResolversParentTypes['DeleteError'] = ResolversParentTypes['DeleteError']> = {
