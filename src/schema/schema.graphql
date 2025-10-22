@@ -1,0 +1,46 @@
+type User {
+    id: ID!
+    username: String!
+    createdAt: String!
+}
+
+type LostItem {
+    id: ID!
+    description: String!
+    coordinates: [Float!]!
+    address: String!
+    author: User!
+    createdAt: String!
+}
+
+type FoundItem {
+    id: ID!
+    description: String!
+    coordinates: [Float!]!
+    address: String!
+    author: User!
+    createdAt: String!
+}
+
+type Query {
+    user(id: ID!): User!
+    users: [User!]!
+    lostItem(id: ID!): LostItem!
+    lostItems: [LostItem!]!
+    foundItem(id: ID!): FoundItem!
+    foundItems: [FoundItem!]!
+}
+
+type Mutation {
+    createUser(username: String!, password: String!): User!
+    createLostItem(description: String!, coordinates: [Float!]!, address: String!, authorId: ID!): LostItem!
+    createFoundItem(description: String!, coordinates: [Float!]!, address: String!, authorId: ID!): FoundItem!
+    updateLostItem(id: ID!, description: String!, coordinates: [Float!]!, address: String!): LostItem!
+    updateFoundItem(id: ID!, description: String!, coordinates: [Float!]!, address: String!): FoundItem!
+    deleteLostItem(id: ID!): Boolean!
+    deleteFoundItem(id: ID!): Boolean!
+}
+
+
+
+
