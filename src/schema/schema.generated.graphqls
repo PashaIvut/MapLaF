@@ -1,0 +1,93 @@
+type DeleteError {
+  error: DeleteErrorType!
+}
+
+enum DeleteErrorType {
+  INVALID_ID
+  NOT_FOUND
+}
+
+union DeleteResult = DeleteError | DeleteSuccess
+
+type DeleteSuccess {
+  success: Boolean!
+}
+
+type FoundItem {
+  address: String!
+  author: User!
+  coordinates: [Float!]!
+  createdAt: String!
+  description: String!
+  id: ID!
+}
+
+union Item = FoundItem | LostItem
+
+type ItemError {
+  error: ItemErrorType!
+}
+
+enum ItemErrorType {
+  DUPLICATE_DESCRIPTION
+  INVALID_ID
+  NOT_FOUND
+  VALIDATION_ERROR
+}
+
+union ItemResult = ItemError | ItemSuccess
+
+type ItemSuccess {
+  item: Item!
+}
+
+type LostItem {
+  address: String!
+  author: User!
+  coordinates: [Float!]!
+  createdAt: String!
+  description: String!
+  id: ID!
+}
+
+type Mutation {
+  createFoundItem(address: String!, authorId: ID!, coordinates: [Float!]!, description: String!): ItemResult!
+  createLostItem(address: String!, authorId: ID!, coordinates: [Float!]!, description: String!): ItemResult!
+  createUser(password: String!, username: String!): UserResult!
+  deleteFoundItem(id: ID!): DeleteResult!
+  deleteLostItem(id: ID!): DeleteResult!
+  updateFoundItem(address: String!, coordinates: [Float!]!, description: String!, id: ID!): ItemResult!
+  updateLostItem(address: String!, coordinates: [Float!]!, description: String!, id: ID!): ItemResult!
+}
+
+type Query {
+  foundItem(id: ID!): FoundItem!
+  foundItems: [FoundItem!]!
+  lostItem(id: ID!): LostItem!
+  lostItems: [LostItem!]!
+  user(id: ID!): User!
+  users: [User!]!
+}
+
+type User {
+  createdAt: String!
+  id: ID!
+  username: String!
+}
+
+type UserError {
+  error: UserErrorType!
+}
+
+enum UserErrorType {
+  DUPLICATE_NAME
+  INVALID_ID
+  NOT_FOUND
+  VALIDATION_ERROR
+}
+
+union UserResult = UserError | UserSuccess
+
+type UserSuccess {
+  user: User!
+}
