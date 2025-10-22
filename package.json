@@ -1,4 +1,6 @@
 {
+  "scripts": {
+    "start": "bun src/index.ts"},
   "name": "MapLaF",
   "module": "index.ts",
   "type": "module",
