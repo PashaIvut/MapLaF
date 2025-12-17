@@ -1,7 +1,6 @@
 {
   "name": "lost-and-found-map",
   "version": "1.0.0",
-  "description": "Интерактивная карта для поиска пропавших вещей",
   "main": "src/server.ts",
   "type": "module",
   "scripts": {
