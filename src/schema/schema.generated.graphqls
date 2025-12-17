@@ -1,0 +1,83 @@
+type AuthPayload {
+  recoveryCode: String!
+  token: String!
+  user: User!
+}
+
+type FoundItem {
+  claimedAt: String
+  claimedBy: User
+  description: String
+  foundAt: String!
+  foundBy: User!
+  id: ID!
+  isClaimed: Boolean!
+  isReturned: Boolean!
+  location: Location
+  phone: String
+  photos: [String!]!
+  returnedAt: String
+  title: String!
+}
+
+type Location {
+  address: String
+  latitude: Float
+  longitude: Float
+}
+
+type LostItem {
+  description: String!
+  foundItem: FoundItem
+  id: ID!
+  isFound: Boolean!
+  location: Location
+  lostAt: String!
+  lostBy: User!
+  phone: String
+  photos: [String!]!
+  title: String!
+}
+
+type Mutation {
+  claimFoundItem(claimedBy: ID!, foundItemId: ID!): FoundItem!
+  createFoundItem(address: String, description: String, foundBy: ID!, latitude: Float, longitude: Float, phone: String, photos: [String!], title: String!): FoundItem!
+  createLostItem(address: String, description: String!, latitude: Float, longitude: Float, lostBy: ID!, phone: String, photos: [String!], title: String!): LostItem!
+  createUser(name: String!): User!
+  deleteFoundItem(id: ID!): Boolean!
+  deleteLostItem(id: ID!): Boolean!
+  login(name: String!, password: String!): AuthPayload!
+  markFoundItemAsReturned(foundItemId: ID!): FoundItem!
+  markLostItemAsFound(foundItemId: ID!, lostItemId: ID!): LostItem!
+  markLostItemAsFoundSimple(lostItemId: ID!): LostItem!
+  register(name: String!, password: String!): AuthPayload!
+  requestPasswordReset(name: String!, recoveryCode: String!): String!
+  resetPassword(newPassword: String!, token: String!): Boolean!
+  updateFoundItem(description: String, id: ID!, isReturned: Boolean, phone: String, photos: [String!], title: String): FoundItem!
+  updateLostItem(description: String, id: ID!, phone: String, photos: [String!], title: String): LostItem!
+}
+
+type Query {
+  foundItem(id: ID!): FoundItem
+  foundItems: [FoundItem!]!
+  foundItemsNearLocation(latitude: Float!, longitude: Float!, radius: Float!): [FoundItem!]!
+  lostItem(id: ID!): LostItem
+  lostItems: [LostItem!]!
+  lostItemsNearLocation(latitude: Float!, longitude: Float!, radius: Float!): [LostItem!]!
+  myClaimedFoundItems(userId: ID!): [FoundItem!]!
+  myFoundItems(userId: ID!): [FoundItem!]!
+  myLostItems(userId: ID!): [LostItem!]!
+  searchFoundItems(query: String!): [FoundItem!]!
+  searchLostItems(query: String!): [LostItem!]!
+  user(id: ID!): User
+  users: [User!]!
+}
+
+type User {
+  createdAt: String!
+  foundItems: [FoundItem!]!
+  id: ID!
+  lostItems: [LostItem!]!
+  name: String!
+  role: String!
+}

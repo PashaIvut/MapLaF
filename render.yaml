@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: lost-and-found-map
+    runtime: bun
+    plan: starter
+    buildCommand: bun install && bun run codegen
+    startCommand: bun run src/server.ts
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+

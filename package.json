@@ -1,0 +1,33 @@
+{
+  "name": "lost-and-found-map",
+  "version": "1.0.0",
+  "description": "Интерактивная карта для поиска пропавших вещей",
+  "main": "src/server.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch src/server.ts",
+    "build": "bun build src/server.ts --outdir dist",
+    "start": "bun run src/server.ts",
+    "codegen": "graphql-codegen --config codegen.ts"
+  },
+  "dependencies": {
+    "@graphql-tools/schema": "^10.0.25",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.2.3",
+    "graphql": "^16.11.0",
+    "graphql-yoga": "^5.16.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.1",
+    "nodemailer": "^7.0.10"
+  },
+  "devDependencies": {
+    "@eddeee888/gcg-typescript-resolver-files": "^0.13.0",
+    "@graphql-codegen/cli": "^6.0.0",
+    "@types/bcrypt": "^6.0.0",
+    "@types/bun": "latest",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^24.7.2",
+    "typescript": "^5.9.3"
+  }
+}
